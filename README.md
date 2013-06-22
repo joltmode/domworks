@@ -4,4 +4,4 @@ DOMWorks is a Document Object Model ([DOM](https://developer.mozilla.org/en-US/d
 
 ### License
 
-DOMWorks is open-sourced software licensed under the [MIT license](LICENSE.txt)
+DOMWorks is open-sourced software licensed under the [MIT license](LICENSE.txt).
