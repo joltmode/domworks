@@ -41,7 +41,7 @@ class Node
     public function __construct($element, $value, DOMWorks $domworks)
     {
         // cache document
-        $this->document = $document->document;
+        $this->document = $domworks->document;
 
         // cache domworks
         $this->domworks = $domworks;
@@ -71,7 +71,7 @@ class Node
     public function append($append)
     {
         // in case append is a closure, we set the content and let it live on it's own
-        if ($append instanceof Closure)
+        if ($append instanceof \Closure)
         {
             self::$_context = $this->node;
             call_user_func($append, $this->domworks, $this);

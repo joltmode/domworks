@@ -6,7 +6,7 @@ class DOMWorks
      * Document instance
      * @var DOMDocument
      */
-    private $document;
+    public $document;
 
     /**
      * HTML / document element instance
@@ -105,7 +105,7 @@ class DOMWorks
         }
 
         // in case context element is DOMWorks\Node
-        else if ($conext !== null && $context instanceof Node)
+        else if ($context !== null && $context instanceof Node)
         {
             // take DOMNode
             $context = $context->node;
