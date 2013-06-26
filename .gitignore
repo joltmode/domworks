@@ -1,2 +1,5 @@
 # joltmode's local testing
 www
+_*
+vendor
+composer.lock
