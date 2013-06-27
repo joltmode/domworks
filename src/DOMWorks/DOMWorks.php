@@ -9,10 +9,9 @@ class DOMWorks
     private $document;
     private $select;
 
-    public function __construct(DOMDocument $document, Element $context = null)
+    public function __construct(DOMDocument $document)
     {
         $this->document = $document;
-        $this->context = $context;
 
         $this->select = new Selector($document);
     }
@@ -24,7 +23,7 @@ class DOMWorks
 
     public function __toString()
     {
-        return $this->document->saveHTML($this->context);
+        return $this->document->saveHTML();
     }
 
     public static function loadHTMLFile($file)
