@@ -1,9 +1,9 @@
 ### DOMWorks
 
-DOMWorks is a Document Object Model ([DOM](https://developer.mozilla.org/en-US/docs/DOM)) wrapper to simplify and enhance working with HTML.
+DOMWorks is a Document Object Model ([DOM](https://developer.mozilla.org/en-US/docs/DOM)) wrapper to simplify and enhance working with HTML in a similar fashion to [jQuery](http://jquery.com).
 
 ### TODO
-- [ ] [pseudo selectors (:parent, :first, :last)](http://api.jquery.com/category/selectors/jquery-selector-extensions/)
+- [pseudo selectors (:parent, :first, :last)](http://api.jquery.com/category/selectors/jquery-selector-extensions/)
 
 ### License
 
