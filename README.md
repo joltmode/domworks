@@ -31,7 +31,8 @@ $bodyStyleAlternative = $body->style;
 ```
 
 ### TODO
-- [pseudo selectors (:parent, :first, :last)](http://api.jquery.com/category/selectors/jquery-selector-extensions/)
+- Pseudo selectors [(:parent, :first, :last, ...)](http://api.jquery.com/category/selectors/jquery-selector-extensions/)
+- Dynamic lists for special, stackable properties like `style` & `class`, to allow: `$dx('div')->style['color'] = 'blue'`, `$dx('div')->class[] = 'extra'` and `unlink($dx('div')->style['color']`.
 
 ### License
 
