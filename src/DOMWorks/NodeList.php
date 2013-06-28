@@ -1,24 +1,25 @@
 <?php namespace DOMWorks;
 
 use DOMNodeList;
-use DOMDocument;
-use DOMWorks\Element;
 use DOMElement;
+use DOMWorks\DOMWorks;
+use DOMWorks\Element;
 use BadMethodCallException;
 use Iterator, Countable, ArrayAccess;
-use DOMWorks\Selector;
 
 class NodeList implements Iterator, Countable, ArrayAccess
 {
     protected $document;
     protected $elements = array();
     protected $select;
+    protected $domworks;
 
     protected $position = 0;
 
-    public function __construct(DOMDocument $document, $elements = null)
+    public function __construct(DOMWorks $dx, $elements = null)
     {
-        $this->document = $document;
+        $this->document = $dx->document;
+        $this->domworks = $dx;
         if ($elements instanceof Traversible)
         {
             foreach ($elements as $element)
@@ -26,39 +27,30 @@ class NodeList implements Iterator, Countable, ArrayAccess
                 $this->elements[] = new Element($element);
             }
         }
-
-        $this->select = new Selector($this->document, $this);
     }
 
     public function __invoke($selector)
     {
-        return $this->select->execute($selector);
+        // var_dump(__METHOD__);
+        return $this->domworks->find($selector, $this->elements);
     }
 
     public function add()
     {
         $elements = func_get_args();
 
-        /*if (count($elements) == 1 && ($elements[0] instanceof DOMNodeList || $elements[0] instanceof self))
+        foreach ($elements as $element)
         {
-            call_user_func_array(array($this, __FUNCTION__), self::toArray($elements[0]));
-        }
-        else
-        {*/
 
-            foreach ($elements as $element)
+            if ($element instanceof DOMNodeList || $element instanceof self)
             {
-
-                if ($element instanceof DOMNodeList || $element instanceof self)
-                {
-                    call_user_func_array(array($this, __FUNCTION__), self::toArray($element));
-                    continue;
-                }
-
-                if ($element instanceof DOMElement) $element = new Element($element);
-                $this->elements[] = $element;
+                call_user_func_array(array($this, __FUNCTION__), self::toArray($element));
+                continue;
             }
-        //}
+
+            if ($element instanceof DOMElement) $element = new Element($element);
+            $this->elements[] = $element;
+        }
 
         return $this;
     }
