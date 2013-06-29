@@ -30,19 +30,30 @@ class DOMWorks
     {
         // var_dump(__METHOD__);
 
-        $selector = CssSelector::toXPath($selector);
         $elements = new NodeList($this);
 
         if (!$context || count($context) === 0)
         {
-            // var_dump($selector);
+            if (in_array($selector[0], array('>', '+', '')))
+            {
+                $selector = 'html' . $selector;
+            }
+
+            $selector = CssSelector::toXPath($selector);
+            //var_dump($selector);
             $elements->add($this->xpath->query($selector));
         }
         else
         {
             foreach ($context as $c)
             {
-                // var_dump($selector);
+                if (in_array($selector[0], array('>', '+', '')))
+                {
+                    $selector = $c->element->tagName . $selector;
+                }
+
+                $selector = CssSelector::toXPath($selector);
+                //var_dump($selector);
                 $elements->add($this->xpath->query($selector, $c->element));
             }
         }
