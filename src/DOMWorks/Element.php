@@ -2,6 +2,7 @@
 
 use Closure;
 use DOMElement;
+use DOMWorks\NodeList;
 
 class Element
 {
@@ -21,6 +22,27 @@ class Element
         {
             $this->href($value);
         }
+
+        return $this;
+    }
+
+    public function append($element)
+    {
+        $element = $element[0];
+
+        if ($element instanceof DOMElement)
+        {
+            $this->element->appendChild( $element );
+        }
+        else if ($element instanceof NodeList)
+        {
+            foreach ($element as $e)
+            {
+                $this->element->appendChild( $e->element );
+            }
+        }
+
+        return $this;
     }
 
     /**
