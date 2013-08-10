@@ -3,3 +3,4 @@ www
 _*
 vendor
 composer.lock
+*.sublime*
